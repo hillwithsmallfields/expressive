@@ -65,3 +65,26 @@ def linked_image(charts_dir, image_name, label, fallback=None):
         labels={period: period.capitalize().replace('_', ' ') for period in periods},
         order=periods,
         initial='past_quarter')
+
+class SectionalPage(object):
+
+    """Holder for collecting section to make up a page.
+    Each section has an H2 heading, and these are used to make a table of contents.
+    Empty sections are not added."""
+
+    pass
+
+    def __init__(self):
+        self._sections = []
+
+    def add_section(self, title, body):
+        if body:
+            self._sections.append((title, body))
+
+    def toc(self):
+        return [T.h2["Table of contents"],
+                T.ul[[T.li[T.a(href="#"+namify(section[0]))[section[0]]] for section in self._sections]]]
+
+    def sections(self):
+        return [[T.div(class_='section')[T.h2[T.a(name=namify(section[0]))[section[0]]],
+                       T.div(class_='sectionbody')[section[1]]] for section in self._sections]]
