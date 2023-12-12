@@ -4,7 +4,7 @@ These build on the HTML elements provided by expressionive.py, to
 produce some HTML fragments that I might use in several of my
 projects."""
 
-from expressionive import htmltags as T
+from expressionive.expressionive import htmltags as T
 
 def namify(x):
     return x.replace(' ', '_')
