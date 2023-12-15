@@ -4,6 +4,8 @@ These build on the HTML elements provided by expressionive.py, to
 produce some HTML fragments that I might use in several of my
 projects."""
 
+import os
+
 from expressionive.expressionive import htmltags as T
 
 def namify(x):
@@ -50,7 +52,6 @@ def switchable_panel(switcher_id, panels, labels, order, initial):
 
 def linked_image(charts_dir, image_name, label, fallback=None):
     """Returns a group of image panels with the image of each linked to a larger version of itself."""
-    os.path.join(charts_dir)
     periods = ('all_time', 'past_year', 'past_quarter', 'past_month', 'past_week')
     return switchable_panel(
         label,
