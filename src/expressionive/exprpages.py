@@ -4,8 +4,13 @@ import sys
 import expressionive
 from expressionive.expressionive import htmltags as T
 
-def page_text(page_contents, style_text, script_text):
-    """Return the text of an expressionive page."""
+def page_text(page_contents,
+              style_text,
+              script_text):
+    """Return the text of an expressionive page.
+
+    The page contents are given as an expressionive expression,
+    and the stylesheet and scripts as strings."""
     return expressionive.Serializer(expressionive.examples_vmap, 'utf-8').serialize(
         expressionive.HTML5Doc([expressionive.safe_unicode(style_text
                                                            + script_text),

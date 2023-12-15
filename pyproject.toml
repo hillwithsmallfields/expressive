@@ -8,5 +8,5 @@ authors = [{name = "John C. G. Sturdy", email = "jcg.sturdy@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)"]
-version = "0.0.4"
+version = "0.0.5"
 description = "A Python3-compatible fork of 'Throw out your templates', similar to Nevow's 'stan'."
