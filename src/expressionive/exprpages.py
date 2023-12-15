@@ -1,7 +1,7 @@
 import os
 import sys
 
-import expressionive
+import expressionive.expressionive as xpres
 from expressionive.expressionive import htmltags as T
 
 def page_text(page_contents,
@@ -11,15 +11,15 @@ def page_text(page_contents,
 
     The page contents are given as an expressionive expression,
     and the stylesheet and scripts as strings."""
-    return expressionive.Serializer(expressionive.examples_vmap, 'utf-8').serialize(
-        expressionive.HTML5Doc([expressionive.safe_unicode(style_text
-                                                           + script_text),
-                                page_contents],
-                               head=T.head[T.meta(charset='utf-8'),
-                                           T.meta(rel='stylesheet',
-                                                  type_='text/css',
-                                                  href="dashboard.css"),
-                                           T.title["Personal dashboard"]]))
+    return xpres.Serializer(xpres.examples_vmap, 'utf-8').serialize(
+        xpres.HTML5Doc([xpres.safe_unicode(style_text
+                                           + script_text),
+                        page_contents],
+                       head=T.head[T.meta(charset='utf-8'),
+                                   T.meta(rel='stylesheet',
+                                          type_='text/css',
+                                          href="dashboard.css"),
+                                   T.title["Personal dashboard"]]))
 
 def file_contents(filename):
     """Return the contents of a file."""
