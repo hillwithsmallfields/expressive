@@ -60,7 +60,7 @@ def linked_image(charts_dir, image_name, label, fallback=None):
                 (T.a(href="%s-%s-large.png" % (image_name, period))[
                     T.img(src="%s-%s-small.png" % (image_name, period))]
                  if os.path.isfile(os.path.join(charts_dir, "%s-%s-small.png" % (image_name, period))) # TODO: this isn't right, is it looking in the right directory?
-                 else fallback or T.p["Data needs fetching"])]
+                 else fallback or T.p[f"Image set {image_name} not found"])]
         ]
                 for period in periods},
         labels={period: period.capitalize().replace('_', ' ') for period in periods},
@@ -84,8 +84,14 @@ class SectionalPage(object):
 
     def toc(self):
         return [T.h2["Table of contents"],
-                T.ul[[T.li[T.a(href="#"+namify(section[0]))[section[0]]] for section in self._sections]]]
+                T.ul[[T.li[T.a(href="#"+namify(section[0]))[section[0]]]
+                      for section in self._sections
+                      if section[0]]]]
 
     def sections(self):
-        return [[T.div(class_='section')[T.h2[T.a(name=namify(section[0]))[section[0]]],
-                       T.div(class_='sectionbody')[section[1]]] for section in self._sections]]
+        return [[T.div(class_='section')
+                 [(T.h2[T.a(name=namify(section[0]))[section[0]]])
+                  if section[0]
+                  else [],
+                  T.div(class_='sectionbody')[section[1]]]
+                 for section in self._sections]]
