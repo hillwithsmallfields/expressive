@@ -29,8 +29,12 @@ def wrap_box(*things):
             else None)
 
 def labelled_section(title, body):
-    """Returns a titled version of the body."""
+    """Returns a titled version of the body, at h2 level."""
     return T.div[T.h2[title], body] if body else None
+
+def labelled_subsection(title, body):
+    """Returns a titled version of the body, at h3 level."""
+    return T.div[T.h3[title], body] if body else None
 
 def switchable_panel(switcher_id, panels, labels, order, initial):
     """Return a group of panels, only one of which is displayed at a time.
