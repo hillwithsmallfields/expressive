@@ -47,7 +47,7 @@ def switchable_panel(switcher_id, panels, labels, order, initial=None, title=Non
     - initial is the button to be selected initially.
     """
     return T.table(class_='switcher', id_=switcher_id)[
-        T.tr(align="center")[title or switcher_id.title()],
+        T.tr(align="center", class_='switcher_title')[T.th[title]] if title else [],
         T.tr(align="center")[T.td[[T.div(class_='choice', name=choice)[panels[choice]]
                                    for choice in order]]],
         T.tr(align="center")[
