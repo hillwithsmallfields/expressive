@@ -66,8 +66,7 @@ def linked_image(charts_dir, image_name, label, fallback=None, title=None):
             T.div(class_='choice', name=period)[
                 (T.a(href="%s-%s-large.png" % (image_name, period))[
                     T.img(src="%s-%s-small.png" % (image_name, period))]
-                 # TODO: this isn't right, is it looking in the right directory?
-                 if os.path.isfile(os.path.join(charts_dir, "%s-%s-small.png" % (image_name, period)))
+                 if os.path.isfile(os.path.expanduser(os.path.join(charts_dir, "%s-%s-small.png" % (image_name, period))))
                  else fallback or T.p[f"Image set {image_name} not found"])]
         ]
                 for period in periods},
